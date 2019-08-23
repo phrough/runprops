@@ -1,9 +1,9 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[appSettingPane]'
+  selector: '[appSettingsPane]'
 })
-export class SettingPaneDirective {
+export class SettingsPaneDirective {
 
   constructor(public viewContainerRef: ViewContainerRef) { }
 

@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobTimeComponent implements OnInit {
 
-  job: any;
+  data: any;
 
   constructor() { }
 

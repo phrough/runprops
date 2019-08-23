@@ -1,4 +1,18 @@
 import { Component } from '@angular/core';
+import { SettingPaneItem } from './settings-list/setting-pane-item';
+import { JobNameComponent } from './job-name/job-name.component';
+import { JobTimeComponent } from './job-time/job-time.component';
+
+const data = {
+  job: {
+    environment: 'kVmWare',
+    stuff: 'things',
+    etc: 2,
+    id: 4,
+    name: 'job name',
+    time: '12:45am',
+  },
+};
 
 @Component({
   selector: 'app-root',
@@ -6,5 +20,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  propComponents = ['JobTimeComponent'];
+    // This would be defined in a flow type specific config file and passed in.
+    listComponents: SettingPaneItem[] = [
+      new SettingPaneItem(JobNameComponent, data),
+      new SettingPaneItem(JobTimeComponent, data),
+    ];
 }

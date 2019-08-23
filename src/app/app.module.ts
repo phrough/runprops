@@ -6,19 +6,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JobTimeComponent } from './job-time/job-time.component';
-import { RunPropertiesListComponent } from './run-properties-list/run-properties-list.component';
-import { SettingPaneDirective } from './setting-pane.directive';
+import { SettingsListComponent } from './settings-list/settings-list.component';
+import { SettingsPaneDirective } from './settings-list/settings-pane/settings-pane.directive';
 import { JobNameComponent } from './job-name/job-name.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     JobTimeComponent,
-    RunPropertiesListComponent,
-    SettingPaneDirective,
+    SettingsListComponent,
+    SettingsPaneDirective,
     JobNameComponent,
   ],
   entryComponents: [
+
     JobTimeComponent,
     JobNameComponent,
   ],
