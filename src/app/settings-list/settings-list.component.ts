@@ -13,6 +13,8 @@ export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
   // Can make this viewchildren maybe? move logic to ngAfterViewInit so they can be created via ngFor
   @ViewChildren(SettingsPaneDirective) settingPaneHosts: QueryList<SettingsPaneDirective>;
 
+  @Input() title: string;
+
   // This would be defined in a flow type specific config file and passed in.
   @Input() listComponents: SettingPaneItem[];
 

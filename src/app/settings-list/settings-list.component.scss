@@ -8,3 +8,14 @@
       }
    }
 }
+
+div.settings-list-item {
+  border-bottom: 1px solid #eee;
+  padding: 0.5rem 1rem;
+  margin-right: -1rem;
+  margin-left: -1rem;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
