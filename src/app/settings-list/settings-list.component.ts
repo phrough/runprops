@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild, ComponentFactoryResolver, ViewContainerRef, ViewChildren, QueryList, Input, ChangeDetectorRef } from '@angular/core';
 import { SettingsPaneDirective } from './settings-pane/settings-pane.directive';
 import { SettingPaneItem } from './setting-pane-item';
-import { MatListItem } from '@angular/material';
 
 @Component({
   selector: 'app-settings-list',
@@ -9,6 +8,9 @@ import { MatListItem } from '@angular/material';
   styleUrls: ['./settings-list.component.scss']
 })
 export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  // TODO: proper type?
+  private componentRefs = [];
 
   // Can make this viewchildren maybe? move logic to ngAfterViewInit so they can be created via ngFor
   @ViewChildren(SettingsPaneDirective) settingPaneHosts: QueryList<SettingsPaneDirective>;
@@ -30,6 +32,8 @@ export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   toggleEdit() {
     this.editing = !this.editing;
+
+    this.componentRefs.forEach(componentRef => componentRef.instance.inEditMode = this.editing);
   }
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private cdr: ChangeDetectorRef) { }
@@ -38,7 +42,6 @@ export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    console.log(this.settingPaneHosts);
     let settingsPanelHosts = this.settingPaneHosts.toArray();
 
     for (let index = 0; index < this.listComponents.length; index++) {
@@ -47,8 +50,9 @@ export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
       const viewContainerRef = settingsPanelHosts[index].viewContainerRef;
       viewContainerRef.clear();
 
-      const componentRef = viewContainerRef.createComponent(componentFactory);
-      componentRef.instance.data = listItem.data;
+      this.componentRefs.push(viewContainerRef.createComponent(componentFactory));
+      this.componentRefs[index].instance.data = listItem.data;
+      this.componentRefs[index].instance.inEditMode = this.editing;
     }
 
     this.cdr.detectChanges();

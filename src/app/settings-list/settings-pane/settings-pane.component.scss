@@ -1,0 +1,16 @@
+.app-settings-pane {
+  display: block;
+
+  .edit {
+    display: none;
+  }
+
+  &.is-editing {
+    .edit {
+      display: block;
+    }
+    .view {
+      display: none;
+    }
+  }
+}

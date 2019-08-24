@@ -11,6 +11,7 @@ import { JobTimeComponent } from './job-time/job-time.component';
 import { SettingsListComponent } from './settings-list/settings-list.component';
 import { SettingsPaneDirective } from './settings-list/settings-pane/settings-pane.directive';
 import { JobNameComponent } from './job-name/job-name.component';
+import { SettingsPaneComponent } from './settings-list/settings-pane/settings-pane.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { JobNameComponent } from './job-name/job-name.component';
     SettingsListComponent,
     SettingsPaneDirective,
     JobNameComponent,
+    SettingsPaneComponent,
   ],
   entryComponents: [
 
