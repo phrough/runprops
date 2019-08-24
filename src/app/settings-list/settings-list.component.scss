@@ -1,0 +1,10 @@
+.settings-list-header {
+  display: flex;
+  align-items: center;
+
+   > * {
+      &:last-child {
+        margin-left: auto;
+      }
+   }
+}

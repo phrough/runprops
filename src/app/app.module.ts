@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
-import { MatCardModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -27,7 +29,9 @@ import { JobNameComponent } from './job-name/job-name.component';
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
+    MatButtonModule,
     MatCardModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [ AppComponent ]

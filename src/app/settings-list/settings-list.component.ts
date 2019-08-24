@@ -16,6 +16,20 @@ export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
   // This would be defined in a flow type specific config file and passed in.
   @Input() listComponents: SettingPaneItem[];
 
+  _editing = false;
+
+  get editing() {
+    return this._editing;
+  }
+
+  set editing(newVal) {
+    this._editing = newVal;
+  }
+
+  toggleEdit() {
+    this.editing = !this.editing;
+  }
+
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
@@ -27,7 +41,6 @@ export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     for (let index = 0; index < this.listComponents.length; index++) {
       const listItem = this.listComponents[index];
-      // console.log('listItem', listItem);
       const componentFactory = this.componentFactoryResolver.resolveComponentFactory(listItem.component);
       const viewContainerRef = settingsPanelHosts[index].viewContainerRef;
       viewContainerRef.clear();

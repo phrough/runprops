@@ -1,5 +1,10 @@
 <mat-card>
-  <h2>Run Properties</h2>
+  <div class="settings-list-header">
+    <h2>Run Properties</h2>
+    <button mat-icon-button color="primary" (click)="toggleEdit()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
   <div *ngFor="let item of listComponents">
     <ng-template appSettingsPane></ng-template>
   </div>
