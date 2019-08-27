@@ -1,6 +1,7 @@
 <mat-card>
   <div class="settings-list-header">
     <h2 *ngIf="title">{{title}}</h2>
+    <!-- TODO: Rather than ngIf based on invalid status, disable the button and provide a tooltip explaination. -->
     <button type="button"
       *ngIf="!hasInvalidField"
       mat-icon-button color="primary" (click)="toggleEdit()">
