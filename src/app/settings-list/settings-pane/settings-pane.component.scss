@@ -1,5 +1,12 @@
 .app-settings-pane {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  > label {
+    width: 30%;
+  }
 
   .edit {
     display: none;

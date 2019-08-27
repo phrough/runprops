@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SettingPaneItem } from './settings-list/setting-pane-item';
 import { JobNameComponent } from './job-name/job-name.component';
 import { JobTimeComponent } from './job-time/job-time.component';
+import { FormArray } from '@angular/forms';
 
 const data = {
   job: {
@@ -20,9 +21,11 @@ const data = {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    // This would be defined in a flow type specific config file and passed in.
-    listComponents: SettingPaneItem[] = [
-      new SettingPaneItem(JobNameComponent, data),
-      new SettingPaneItem(JobTimeComponent, data),
-    ];
+  // This would be defined in a flow type specific config file and passed in.
+  listComponents: SettingPaneItem[] = [
+    new SettingPaneItem(JobNameComponent, data),
+    new SettingPaneItem(JobTimeComponent, data),
+  ];
+
+  formPanels: FormArray;
 }

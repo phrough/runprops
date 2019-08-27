@@ -2,5 +2,7 @@
 
 <div class="view">{{data.job.name}}</div>
 <div class="edit">
-  <input type="text">
+  <mat-form-field>
+    <input matInput type="text" [formControl]="jobNameControl">
+  </mat-form-field>
 </div>

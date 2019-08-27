@@ -1,0 +1,14 @@
+
+.edit-flex {
+  display: flex;
+  align-items: center;
+
+  > * {
+    display: inline-block;
+    margin-right: 1rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
