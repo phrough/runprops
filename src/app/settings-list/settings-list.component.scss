@@ -1,9 +1,14 @@
+:host {
+  display: block;
+  margin-bottom: 2rem;
+}
+
 .settings-list-header {
   display: flex;
   align-items: center;
 
    > * {
-      &:last-child {
+      &:last-child:not(:first-child) {
         margin-left: auto;
       }
    }

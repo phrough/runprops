@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsPaneComponent } from '../settings-list/settings-pane/settings-pane.component';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
+import { InvokeFunctionExpr } from '@angular/compiler';
 
 @Component({
   selector: 'app-job-name',
@@ -9,13 +10,19 @@ import { FormControl } from '@angular/forms';
 })
 export class JobNameComponent extends SettingsPaneComponent implements OnInit {
 
-  jobNameControl = new FormControl('');
+  jobNameControl: FormControl;
 
   constructor() {
     super();
   }
 
   ngOnInit() {
+    this.jobNameControl = new FormControl(this.data.job.name, [
+      Validators.required,
+      Validators.minLength(4),
+    ]);
+
+    this.formArray.push(this.jobNameControl);
   }
 
 }

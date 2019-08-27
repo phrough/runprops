@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild, ComponentFactoryResolver, ViewContainerRef, ViewChildren, QueryList, Input, ChangeDetectorRef } from '@angular/core';
 import { SettingsPaneDirective } from './settings-pane/settings-pane.directive';
 import { SettingPaneItem } from './setting-pane-item';
+import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-settings-list',
@@ -8,7 +9,6 @@ import { SettingPaneItem } from './setting-pane-item';
   styleUrls: ['./settings-list.component.scss']
 })
 export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
-
   // TODO: proper type?
   private componentRefs = [];
 
@@ -20,10 +20,17 @@ export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
   // This would be defined in a flow type specific config file and passed in.
   @Input() listComponents: SettingPaneItem[];
 
+  @Input() formArray: FormArray;
+
   _editing = false;
 
   get editing() {
-    return this._editing;
+    // forced editing if any fields are invalid, otherwise return the cached value.
+    return this.hasInvalidField || this._editing;
+  }
+
+  get hasInvalidField(): boolean {
+    return this.formArray.status === 'INVALID';
   }
 
   set editing(newVal) {
@@ -53,8 +60,10 @@ export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.componentRefs.push(viewContainerRef.createComponent(componentFactory));
       this.componentRefs[index].instance.data = listItem.data;
       this.componentRefs[index].instance.inEditMode = this.editing;
+      this.componentRefs[index].instance.formArray = this.formArray;
     }
 
+    // Since these changes are being made after the view has initialized, fire change detection manually.
     this.cdr.detectChanges();
   }
 

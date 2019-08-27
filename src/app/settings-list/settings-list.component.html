@@ -1,7 +1,9 @@
 <mat-card>
   <div class="settings-list-header">
     <h2 *ngIf="title">{{title}}</h2>
-    <button mat-icon-button color="primary" (click)="toggleEdit()">
+    <button type="button"
+      *ngIf="!hasInvalidField"
+      mat-icon-button color="primary" (click)="toggleEdit()">
       <mat-icon>edit</mat-icon>
     </button>
   </div>
