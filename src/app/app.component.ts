@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component } from '@angular/core';
 import { SettingPaneItem } from './settings-list/setting-pane-item';
 import { JobNameComponent } from './job-name/job-name.component';
 import { JobTimeComponent } from './job-time/job-time.component';
@@ -20,7 +20,7 @@ const data = {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewChecked {
+export class AppComponent {
   // This would be defined in a flow type specific config file and passed in.
   listComponents: SettingPaneItem[] = [
     new SettingPaneItem(JobNameComponent, data),
@@ -32,14 +32,6 @@ export class AppComponent implements OnInit, AfterViewChecked {
   megaForm: FormGroup = new FormGroup({
     panels: this.formPanels,
   });
-
-  ngOnInit() {
-    console.log('onInit', this.megaForm);
-  }
-
-  ngAfterViewChecked() {
-    console.log('afterViewChecked', this.megaForm);
-  }
 
   onSubmit(): void {
     console.log('onSubmit', this.megaForm);
