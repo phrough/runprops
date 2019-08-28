@@ -14,7 +14,26 @@
    }
 }
 
-div.settings-list-item {
+.settings-list {
+  // Reset UL styles.
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  // Set animation properties.
+  transition-property: max-height;
+  transition-duration: 0.75s;
+  transition-timing-function: ease-in;
+  // TODO: this is too restrictive. Leverage Angular animation so height can be explicit (*).
+  max-height: 100vh;
+  overflow: hidden;
+
+  :host.settings-hidden & {
+    max-height: 0;
+  }
+}
+
+li.settings-list-item {
   border-bottom: 1px solid #eee;
   padding: 0.5rem 1rem;
   margin-right: -1rem;

@@ -16,7 +16,23 @@ export class SettingsPaneComponent implements OnInit {
   // strictly for style targeting
   @HostBinding('class.app-settings-pane') private paneClass = true;
 
-  @HostBinding('class.is-editing') @Input() inEditMode = false;
+  private _editMode = false;
+
+  @HostBinding('class.is-editing') get editMode(): boolean {
+    return this.hasInvalidField || this._editMode;
+  }
+  set editMode(newVal: boolean) {
+    this._editMode = newVal;
+  }
+
+  toggleEditMode() {
+    this.editMode = !this.editMode;
+  }
+
+  get hasInvalidField(): boolean {
+    // TODO: This should be specific to this pane context rather than the entire FormArray.
+    return this.formArray.status === 'INVALID';
+  }
 
   constructor() { }
 

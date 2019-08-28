@@ -1,4 +1,5 @@
 .app-settings-pane {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -6,6 +7,12 @@
 
   > label {
     width: 30%;
+  }
+
+  .settings-pane-edit-button {
+    position: absolute;
+    right: 0;
+    top: -0.5rem;
   }
 
   .edit {
@@ -20,4 +27,5 @@
       display: none;
     }
   }
+
 }

@@ -4,11 +4,13 @@
     <!-- TODO: Rather than ngIf based on invalid status, disable the button and provide a tooltip explaination. -->
     <button type="button"
       *ngIf="!hasInvalidField"
-      mat-icon-button color="primary" (click)="toggleEdit()">
-      <mat-icon>edit</mat-icon>
+      mat-mini-fab (click)="toggleSettingsVisibility()">
+      <mat-icon>{{showSettings ? 'keyboard_arrow_down' : 'keyboard_arrow_down'}}</mat-icon>
     </button>
   </div>
-  <div *ngFor="let item of listComponents" class="settings-list-item">
-    <ng-template appSettingsPane></ng-template>
-  </div>
+  <ul class="settings-list">
+    <li class="settings-list-item" *ngFor="let item of listComponents">
+      <ng-template appSettingsPane></ng-template>
+    </li>
+  </ul>
 </mat-card>

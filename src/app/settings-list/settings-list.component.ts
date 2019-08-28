@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild, ComponentFactoryResolver, ViewContainerRef, ViewChildren, QueryList, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild, ComponentFactoryResolver, ViewContainerRef, ViewChildren, QueryList, Input, ChangeDetectorRef, HostBinding } from '@angular/core';
 import { SettingsPaneDirective } from './settings-pane/settings-pane.directive';
 import { SettingPaneItem } from './setting-pane-item';
 import { FormArray } from '@angular/forms';
@@ -22,25 +22,25 @@ export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input() formArray: FormArray;
 
-  _editing = false;
+  _settingsVisible = false;
 
-  get editing() {
-    // forced editing if any fields are invalid, otherwise return the cached value.
-    return this.hasInvalidField || this._editing;
+  @HostBinding('class.settings-hidden') get settingsVisible(): boolean {
+    // forced visibility if any fields are invalid, otherwise return the cached value.
+    return this.hasInvalidField || this._settingsVisible;
+  }
+
+  set settingsVisible(newVal) {
+    this._settingsVisible = newVal;
   }
 
   get hasInvalidField(): boolean {
     return this.formArray.status === 'INVALID';
   }
 
-  set editing(newVal) {
-    this._editing = newVal;
-  }
+  toggleSettingsVisibility() {
+    this.settingsVisible = !this.settingsVisible;
 
-  toggleEdit() {
-    this.editing = !this.editing;
-
-    this.componentRefs.forEach(componentRef => componentRef.instance.inEditMode = this.editing);
+    this.componentRefs.forEach(componentRef => componentRef.instance.settingsVisible = this.settingsVisible);
   }
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private cdr: ChangeDetectorRef) { }
@@ -59,7 +59,6 @@ export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.componentRefs.push(viewContainerRef.createComponent(componentFactory));
       this.componentRefs[index].instance.data = listItem.data;
-      this.componentRefs[index].instance.inEditMode = this.editing;
       this.componentRefs[index].instance.formArray = this.formArray;
     }
 

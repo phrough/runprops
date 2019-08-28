@@ -6,3 +6,10 @@
     <input matInput type="text" [formControl]="jobNameControl">
   </mat-form-field>
 </div>
+<!-- TODO: how to move this into base pane compoent? No idea -->
+<button type="button"
+  class="settings-pane-edit-button"
+  *ngIf="!hasInvalidField"
+  mat-icon-button color="primary" (click)="toggleEditMode()">
+  <mat-icon>edit</mat-icon>
+</button>

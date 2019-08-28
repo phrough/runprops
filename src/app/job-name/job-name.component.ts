@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsPaneComponent } from '../settings-list/settings-pane/settings-pane.component';
 import { FormControl, Validators } from '@angular/forms';
-import { InvokeFunctionExpr } from '@angular/compiler';
 
 @Component({
   selector: 'app-job-name',
