@@ -1,5 +1,5 @@
 import { ComponentPortal, Portal, ComponentType, PortalInjector } from '@angular/cdk/portal';
-import { Component, HostBinding, Input, OnInit, ViewEncapsulation, InjectionToken, Injector } from '@angular/core';
+import { Component, HostBinding, Input, OnInit, ViewEncapsulation, InjectionToken, Injector, ElementRef } from '@angular/core';
 import { FormArray } from '@angular/forms';
 
 import { SettingPaneItem } from '../setting-pane-item';
@@ -42,21 +42,19 @@ export class SettingsPaneComponent implements OnInit {
   }
 
   get hasInvalidField(): boolean {
-    // TODO: This should be specific to this pane context rather than the entire FormArray.
-    return !!this.formArray && this.formArray.status === 'INVALID';
+    return /ng-invalid/.test(this.elementRef.nativeElement.innerHTML);
   }
 
-  constructor(private injector: Injector) {}
+  constructor(
+    private injector: Injector,
+    private elementRef: ElementRef,
+  ) {}
 
   ngOnInit() {
-
-    console.log(this.formArray);
-    console.log(this.settingsPaneItem);
     const tokens = new WeakMap();
     tokens.set(SETTINGS_DATA, this.settingsPaneItem.data);
     tokens.set(FORM_ARRAY, this.formArray);
     this.portal = new ComponentPortal(this.settingsPaneItem.component, null, new PortalInjector(this.injector, tokens));
-    // this._portalInstance = new ComponentPortal(this.settingsPaneItem.component);
   }
 
 }

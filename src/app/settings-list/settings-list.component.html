@@ -1,13 +1,16 @@
 <mat-card>
   <div class="settings-list-header">
     <h2 *ngIf="title">{{title}}</h2>
-    <!-- TODO: Rather than ngIf based on invalid status, disable the button and provide a tooltip explaination. -->
-    <button type="button"
-      *ngIf="!hasInvalidField"
-      mat-mini-fab
-      (click)="toggleSettingsVisibility()">
-      <mat-icon>{{showSettings ? 'keyboard_arrow_down' : 'keyboard_arrow_down'}}</mat-icon>
-    </button>
+
+    <!-- Using span for the tooltip as the tooltip won't display when attached to a disabled button. -->
+    <span matTooltip="Collapse is disabled due to invalid form value(s)." [matTooltipDisabled]="!hasInvalidField">
+      <button type="button"
+        mat-mini-fab
+        [disabled]="hasInvalidField"
+        (click)="toggleSettingsVisibility()">
+        <mat-icon>{{showSettings ? 'keyboard_arrow_down' : 'keyboard_arrow_down'}}</mat-icon>
+      </button>
+    </span>
   </div>
   <ul class="settings-list" [@openClose]="settingsVisible ? 'open' : 'closed'">
     <li class="settings-list-item" *ngFor="let item of listComponents">
