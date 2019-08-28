@@ -8,10 +8,13 @@
   align-items: center;
 
    > * {
-      &:last-child:not(:first-child) {
-        margin-left: auto;
-      }
-   }
+    &:last-child:not(:first-child) {
+      margin-left: auto;
+    }
+  }
+  h2 {
+    margin-bottom: 0;
+  }
 }
 
 .settings-list {
@@ -27,6 +30,12 @@ li.settings-list-item {
   padding: 0.5rem 1rem;
   margin-right: -1rem;
   margin-left: -1rem;
+
+  // Removed margin from h2 and added to the first list item rather than the list itself so that the padding is included
+  // in the animation when collapsing the list and doesn't take up space when in collapsed state (as the h2 margin did).
+  &:first-child {
+    margin-top: 1rem;
+  }
 
   &:last-of-type {
     border-bottom: none;
