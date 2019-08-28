@@ -1,12 +1,20 @@
-.app-settings-pane {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: stretch;
+app-settings-pane {
+    position: relative;
 
-  > label {
-    width: 30%;
+  .settings-pane {
+    position: relative;
+
+    // This will be the component inserted into the portal.
+    > :first-child {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: stretch;
+
+      > label {
+        width: 30%;
+      }
+    }
   }
 
   .settings-pane-edit-button {

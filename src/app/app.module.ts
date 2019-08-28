@@ -6,12 +6,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PortalModule } from '@angular/cdk/portal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JobTimeComponent } from './job-time/job-time.component';
 import { SettingsListComponent } from './settings-list/settings-list.component';
-import { SettingsPaneDirective } from './settings-list/settings-pane/settings-pane.directive';
 import { JobNameComponent } from './job-name/job-name.component';
 import { SettingsPaneComponent } from './settings-list/settings-pane/settings-pane.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +21,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     JobTimeComponent,
     SettingsListComponent,
-    SettingsPaneDirective,
     JobNameComponent,
     SettingsPaneComponent,
   ],
@@ -40,6 +39,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    PortalModule,
   ],
   providers: [],
   bootstrap: [ AppComponent ]

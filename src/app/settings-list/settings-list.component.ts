@@ -1,5 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild, ComponentFactoryResolver, ViewContainerRef, ViewChildren, QueryList, Input, ChangeDetectorRef, HostBinding } from '@angular/core';
-import { SettingsPaneDirective } from './settings-pane/settings-pane.directive';
+import { Component, Input, ChangeDetectorRef } from '@angular/core';
 import { SettingPaneItem } from './setting-pane-item';
 import { FormArray } from '@angular/forms';
 import {
@@ -30,13 +29,7 @@ import {
     ]),
   ],
 })
-export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
-  // TODO: proper type?
-  private componentRefs = [];
-
-  // Can make this viewchildren maybe? move logic to ngAfterViewInit so they can be created via ngFor
-  @ViewChildren(SettingsPaneDirective) settingPaneHosts: QueryList<SettingsPaneDirective>;
-
+export class SettingsListComponent {
   @Input() title: string;
 
   // This would be defined in a flow type specific config file and passed in.
@@ -61,34 +54,8 @@ export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   toggleSettingsVisibility() {
     this.settingsVisible = !this.settingsVisible;
-
-    this.componentRefs.forEach(componentRef => componentRef.instance.settingsVisible = this.settingsVisible);
   }
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cdr: ChangeDetectorRef) { }
-
-  ngOnInit() {
-  }
-
-  ngAfterViewInit() {
-    let settingsPanelHosts = this.settingPaneHosts.toArray();
-
-    for (let index = 0; index < this.listComponents.length; index++) {
-      const listItem = this.listComponents[index];
-      const componentFactory = this.componentFactoryResolver.resolveComponentFactory(listItem.component);
-      const viewContainerRef = settingsPanelHosts[index].viewContainerRef;
-      viewContainerRef.clear();
-
-      this.componentRefs.push(viewContainerRef.createComponent(componentFactory));
-      this.componentRefs[index].instance.data = listItem.data;
-      this.componentRefs[index].instance.formArray = this.formArray;
-    }
-
-    // Since these changes are being made after the view has initialized, fire change detection manually.
-    this.cdr.detectChanges();
-  }
-
-  ngOnDestroy() {
-  }
+  constructor(private cdr: ChangeDetectorRef) { }
 
 }

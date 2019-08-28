@@ -11,7 +11,7 @@
   </div>
   <ul class="settings-list" [@openClose]="settingsVisible ? 'open' : 'closed'">
     <li class="settings-list-item" *ngFor="let item of listComponents">
-      <ng-template appSettingsPane></ng-template>
+      <app-settings-pane [settingsPaneItem]="item" [formArray]="formArray"></app-settings-pane>
     </li>
   </ul>
 </mat-card>

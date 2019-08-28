@@ -1,0 +1,10 @@
+<div class='settings-pane'>
+  <ng-template [cdkPortalOutlet]="portal"></ng-template>
+  <button type="button"
+    class="settings-pane-edit-button"
+    *ngIf="!hasInvalidField"
+    mat-icon-button color="primary"
+    (click)="toggleEditMode()">
+    <mat-icon>{{!editMode ? 'edit' : 'close'}}</mat-icon>
+  </button>
+</div>
