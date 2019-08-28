@@ -11,5 +11,5 @@
   class="settings-pane-edit-button"
   *ngIf="!hasInvalidField"
   mat-icon-button color="primary" (click)="toggleEditMode()">
-  <mat-icon>edit</mat-icon>
+  <mat-icon>{{!editMode ? 'edit' : 'close'}}</mat-icon>
 </button>
