@@ -2,11 +2,33 @@ import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild, ComponentFactor
 import { SettingsPaneDirective } from './settings-pane/settings-pane.directive';
 import { SettingPaneItem } from './setting-pane-item';
 import { FormArray } from '@angular/forms';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-settings-list',
   templateUrl: './settings-list.component.html',
-  styleUrls: ['./settings-list.component.scss']
+  styleUrls: ['./settings-list.component.scss'],
+  animations: [
+    trigger('openClose', [
+      state('open', style({
+        height: '*',
+        opacity: 1,
+      })),
+      state('closed', style({
+        height: '0',
+        opacity: 0,
+      })),
+      transition('* => *', [
+        animate('0.25s')
+      ]),
+    ]),
+  ],
 })
 export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
   // TODO: proper type?
@@ -24,7 +46,7 @@ export class SettingsListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   _settingsVisible = false;
 
-  @HostBinding('class.settings-hidden') get settingsVisible(): boolean {
+  get settingsVisible(): boolean {
     // forced visibility if any fields are invalid, otherwise return the cached value.
     return this.hasInvalidField || this._settingsVisible;
   }
