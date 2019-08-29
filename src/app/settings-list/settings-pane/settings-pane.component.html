@@ -1,10 +1,13 @@
-<div class='settings-pane'>
+<div class="settings-pane">
   <ng-template [cdkPortalOutlet]="portal"></ng-template>
-  <button type="button"
-    class="settings-pane-edit-button"
-    *ngIf="!hasInvalidField"
-    mat-icon-button color="primary"
-    (click)="toggleEditMode()">
-    <mat-icon>{{!editMode ? 'edit' : 'close'}}</mat-icon>
-  </button>
+  <span class="settings-pane-edit-button"
+    matTooltip="Invalid values."
+    [matTooltipDisabled]="!hasInvalidField">
+    <button type="button"
+      [disabled]="hasInvalidField"
+      mat-icon-button
+      (click)="toggleEditMode()">
+      <mat-icon>{{!editMode ? 'edit' : 'close'}}</mat-icon>
+    </button>
+  </span>
 </div>
