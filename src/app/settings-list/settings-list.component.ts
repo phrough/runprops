@@ -37,11 +37,14 @@ export class SettingsListComponent {
 
   @Input() formArray: FormArray;
 
+  @Input() alwaysOpen = false;
+
   _settingsVisible = false;
 
+  @Input('settingsVisible')
   get settingsVisible(): boolean {
     // forced visibility if any fields are invalid, otherwise return the cached value.
-    return this.hasInvalidField || this._settingsVisible;
+    return this.alwaysOpen || this.hasInvalidField || this._settingsVisible;
   }
 
   set settingsVisible(newVal) {

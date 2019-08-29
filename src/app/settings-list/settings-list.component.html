@@ -3,12 +3,14 @@
     <h2 *ngIf="title">{{title}}</h2>
 
     <!-- Using span for the tooltip as the tooltip won't display when attached to a disabled button. -->
-    <span matTooltip="Collapse is disabled due to invalid form value(s)." [matTooltipDisabled]="!hasInvalidField">
+    <span *ngIf="!alwaysOpen"
+      matTooltip="Collapse is disabled due to invalid form value(s)."
+      [matTooltipDisabled]="!hasInvalidField">
       <button type="button"
         mat-icon-button
         [disabled]="hasInvalidField"
         (click)="toggleSettingsVisibility()">
-        <mat-icon>{{showSettings ? 'keyboard_arrow_down' : 'keyboard_arrow_down'}}</mat-icon>
+        <mat-icon>{{settingsVisible ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</mat-icon>
       </button>
     </span>
   </div>
